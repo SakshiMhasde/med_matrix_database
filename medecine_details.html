@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medicine Details</title>
+</head>
+<body>
+    <h1>Medicine Details</h1>
+    <table>
+        <tr>
+            <th>Product Name</th>
+            <td>{{ medicine['Product Name'] }}</td>
+        </tr>
+        <tr>
+            <th>Generic Name</th>
+            <td>{{ medicine['Generic Name'] }}</td>
+        </tr>
+        <tr>
+            <th>Manufacturing Company</th>
+            <td>{{ medicine['Manufacturing Company'] }}</td>
+        </tr>
+        <tr>
+            <th>Manufactured Date</th>
+            <td>{{ medicine['Manufactured Date'].strftime('%Y-%m-%d') }}</td>
+        </tr>
+        <tr>
+            <th>Expiry Date</th>
+            <td>{{ medicine['Expiry Date'].strftime('%Y-%m-%d') }}</td>
+        </tr>
+        <tr>
+            <th>Batch No</th>
+            <td>{{ medicine['Batch No'] }}</td>
+        </tr>
+        <tr>
+            <th>Licence No</th>
+            <td>{{ medicine['Licence No'] }}</td>
+        </tr>
+        <tr>
+            <th>Chemical Composition</th>
+            <td>{{ medicine['Chemical Composition'] }}</td>
+        </tr>
+    </table>
+    <a href="{{ url_for('dashboard') }}">Back to Dashboard</a>
+</body>
+</html>

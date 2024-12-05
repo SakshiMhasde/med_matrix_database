@@ -1,0 +1,44 @@
+<!-- templates/display_meds.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Display Medicines</title>
+</head>
+<body>
+    <h1>Medicine List</h1>
+    {% if medicines %}
+    <table border="1">
+        <tr>
+            <th>Product Name</th>
+            <th>Generic Name</th>
+            <th>Expiry Date</th>
+            <th>Category</th>
+        </tr>
+        {% for medicine in medicines %}
+        <tr>
+            <td>{{ medicine.product_name }}</td>
+            <td>{{ medicine.generic_name }}</td>
+            <td>{{ medicine.expiry_date }}</td>
+            <td>{{ medicine.category }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% else %}
+    <p>No medicines found.</p>
+    {% endif %}
+
+    <h2>Mismatches with OCR Data</h2>
+    {% if mismatches %}
+    <ul>
+        {% for mismatch in mismatches %}
+        <li>{{ mismatch }}</li>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <p>No mismatches found.</p>
+    {% endif %}
+</body>
+</html>
+

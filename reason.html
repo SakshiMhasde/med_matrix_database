@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medicine Details</title>
+</head>
+<body>
+    <h1>Medicine Details</h1>
+    <table border="1">
+        <tr>
+            <th>Product Name</th>
+            <td>{{ med['product_name'] }}</td>
+        </tr>
+        <tr>
+            <th>Generic Name</th>
+            <td>{{ med['generic_name'] }}</td>
+        </tr>
+        <tr>
+            <th>Manufactured Date</th>
+            <td>{{ med['manufactured_date'] }}</td>
+        </tr>
+        <tr>
+            <th>Expiry Date</th>
+            <td>{{ med['expiry_date'] }}</td>
+        </tr>
+        <tr>
+            <th>Batch No</th>
+            <td>{{ med['batch_no'] }}</td>
+        </tr>
+        <tr>
+            <th>Licence No</th>
+            <td>{{ med['licence_no'] }}</td>
+        </tr>
+        <tr>
+            <th>Chemical Composition</th>
+            <td>{{ med['chemical_composition'] }}</td>
+        </tr>
+    </table>
+
+    <h2>Data Comparison</h2>
+    {% if mismatched_data %}
+    <p><strong>Data mismatch found!</strong></p>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Field</th>
+                <th>OCR Value</th>
+                <th>Database Value</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for field, ocr_value, db_value in mismatched_data %}
+            <tr>
+                <td>{{ field }}</td>
+                <td>{{ ocr_value }}</td>
+                <td>{{ db_value }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <p><strong>{{ message }}</strong></p>
+    {% endif %}
+
+    <br>
+    <a href="{{ url_for('dashboard') }}">Back to Dashboard</a>
+</body>
+</html>

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medicine Dashboard</title>
+</head>
+<body>
+    <h1>Medicine Dashboard</h1>
+
+    <h2>Consumable Medicines</h2>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Product Name</th>
+                <th>Generic Name</th>
+                <th>Expiry Date</th>
+                <th>Type</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for med in consumable_meds %}
+                <tr>
+                    <td>{{ med['Product Name'] }}</td>
+                    <td>{{ med['Generic Name'] }}</td>
+                    <td>
+                        {% if med['Expiry Date'] %}
+                            {% if med['Expiry Date'] is string %}
+                                {{ med['Expiry Date'] }}
+                            {% else %}
+                                {{ med['Expiry Date'].strftime('%Y-%m-%d') }}
+                            {% endif %}
+                        {% endif %}
+                    </td>
+                    <td>{{ med['Type'] }}</td>
+                    <td><a href="{{ url_for('reason', med_id=med['_id']) }}">Validate</a></td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <h2>Non-Consumable Medicines</h2>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Product Name</th>
+                <th>Generic Name</th>
+                <th>Expiry Date</th>
+                <th>Type</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for med in non_consumable_meds %}
+                <tr>
+                    <td>{{ med['Product Name'] }}</td>
+                    <td>{{ med['Generic Name'] }}</td>
+                    <td>
+                        {% if med['Expiry Date'] %}
+                            {% if med['Expiry Date'] is string %}
+                                {{ med['Expiry Date'] }}
+                            {% else %}
+                                {{ med['Expiry Date'].strftime('%Y-%m-%d') }}
+                            {% endif %}
+                        {% endif %}
+                    </td>
+                    <td>{{ med['Type'] }}</td>
+                    <td><a href="{{ url_for('reason', med_id=med['_id']) }}">Validate</a></td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <h2>All Medicines</h2>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Product Name</th>
+                <th>Generic Name</th>
+                <th>Expiry Date</th>
+                <th>Type</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for med in all_meds %}
+                <tr>
+                    <td>{{ med['Product Name'] }}</td>
+                    <td>{{ med['Generic Name'] }}</td>
+                    <td>
+                        {% if med['Expiry Date'] %}
+                            {% if med['Expiry Date'] is string %}
+                                {{ med['Expiry Date'] }}
+                            {% else %}
+                                {{ med['Expiry Date'].strftime('%Y-%m-%d') }}
+                            {% endif %}
+                        {% endif %}
+                    </td>
+                    <td>{{ med['Type'] }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ url_for('upload_file') }}">Upload New Excel File</a>
+
+</body>
+</html>
